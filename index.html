@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oil Change Check List</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .section {
+      margin-bottom: 24px;
+    }
+    .section-title {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    .item {
+      background: white;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 8px;
+      background: #4CAF50;
+      color: white;
+      font-size: 0.9rem;
+    }
+    button.completed {
+      background: gray;
+    }
+  </style>
+</head>
+<body>
+  <h1>Oil Change Check List</h1>
+
+  <div id="checklist"></div>
+
+  <script>
+    const data = [
+      { section: "Pre-Service", items: [
+        "Confirm correct oil type and filter.",
+        "Gather tools and PPE.",
+        "Verify the vehicle is safely lifted or secured." ]},
+
+      { section: "Drain the Oil", items: [
+        "Position drain pan.",
+        "Remove drain plug and drain fully.",
+        "Inspect plug and gasket.",
+        "Reinstall and torque drain plug." ]},
+
+      { section: "Replace Oil Filter", items: [
+        "Remove old oil filter.",
+        "Confirm old gasket was removed.",
+        "Clean mounting surface.",
+        "Oil new gasket and install filter." ]},
+
+      { section: "Refill Oil", items: [
+        "Add correct amount/grade of oil.",
+        "Reinstall oil fill cap.",
+        "Start engine briefly and check for leaks.",
+        "Verify dipstick level after shutdown." ]},
+
+      { section: "Tire Pressure", items: [
+        "Check door-label PSI.",
+        "Set all four tires.",
+        "Check spare tire if equipped." ]},
+
+      { section: "Fluid Levels", items: [
+        "Check coolant level.",
+        "Check brake fluid.",
+        "Check power steering fluid if applicable.",
+        "Fill washer fluid.",
+        "Check transmission fluid if dipstick-equipped." ]},
+
+      { section: "Underhood Inspection", items: [
+        "Inspect battery terminals.",
+        "Inspect belts for wear.",
+        "Inspect hoses for leaks or swelling.",
+        "Check engine air filter.",
+        "Check cabin air filter (optional)." ]},
+
+      { section: "Under-Vehicle Inspection", items: [
+        "Check for fluid leaks.",
+        "Inspect skid plates/splash shields.",
+        "Inspect exhaust for rust or loose hangers.",
+        "Inspect CV boots and steering components." ]},
+
+      { section: "Exterior Inspection", items: [
+        "Check all exterior lights.",
+        "Check wiper blades.",
+        "Check tire tread/uneven wear." ]},
+
+      { section: "Final Steps", items: [
+        "Reset maintenance/oil life reminder.",
+        "Install next-service sticker.",
+        "Dispose of oil and filter properly.",
+        "Verify no tools left in engine bay.",
+        "Document all notes and recommendations." ]}
+    ];
+
+    const container = document.getElementById("checklist");
+
+    data.forEach(section => {
+      const sectionDiv = document.createElement("div");
+      sectionDiv.className = "section";
+
+      const title = document.createElement("div");
+      title.className = "section-title";
+      title.textContent = section.section;
+
+      sectionDiv.appendChild(title);
+
+      section.items.forEach(itemText => {
+        const itemDiv = document.createElement("div");
+        itemDiv.className = "item";
+
+        const label = document.createElement("span");
+        label.textContent = itemText;
+
+        const btn = document.createElement("button");
+        btn.textContent = "Complete";
+        btn.onclick = () => {
+          btn.classList.toggle("completed");
+          btn.textContent = btn.classList.contains("completed") ? "Done" : "Complete";
+        };
+
+        itemDiv.appendChild(label);
+        itemDiv.appendChild(btn);
+        sectionDiv.appendChild(itemDiv);
+      });
+
+      container.appendChild(sectionDiv);
+    });
+  </script>
+
+</body>
+</html>
